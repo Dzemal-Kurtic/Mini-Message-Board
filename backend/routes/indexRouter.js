@@ -6,4 +6,6 @@ const indexRouter = express.Router()
 
 indexRouter.get("/", getAllMessages)
 
+//indexRouter.get("/new")
+
 export default indexRouter
