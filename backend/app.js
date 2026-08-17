@@ -1,13 +1,17 @@
 import express from "express"
 import cors from "cors"
 
-import indexRouter from "./routes/indexRouter.js"
+import messageRouter from "./routes/messageRouter.js"
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 
+app.use("/messages/", messageRouter)
 
-app.use("/", indexRouter)
+app.use((error, req, res, next) => {
+    console.log(error)
+})
 
 const PORT = 3000
 app.listen(PORT, () => {
