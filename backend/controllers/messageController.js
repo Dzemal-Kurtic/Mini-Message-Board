@@ -1,4 +1,6 @@
-import messages from "../data/messages.js";
+import messages from "../data/messages.js"
+import Message from "../model/message.js"
+import { createMessage } from "../services/messageServices.js"
 
 export async function getAllMessages(req, res) {
     if (!messages) {
@@ -16,22 +18,11 @@ export async function getMessageById(req, res) {
     res.json(message)
 }
 
-export async function createMessage(req, res) {
-    if (!req.body || !req.body.user) {
-        return res.status(400).json({ error: "A message needs user." })
+export async function postMessage(req, res) {
+    try {
+        const newMessage = await createMessage(req.body)
+        res.status(201).json(newMessage)
+    } catch (error) {
+        res.status(400).json(error.message)
     }
-
-    if (!req.body || !req.body.text) {
-        return res.status(400).json({ error: "A message needs text." })
-    }
-
-    const highestId = Math.max(...messages.map((m) => m.id), 0)
-    const newMessage = {
-        id: highestId + 1,
-        text: req.body.text,
-        user: req.body.user,
-        added: new Date()
-    }
-    messages.push(newMessage)
-    res.status(201).json(newMessage)
 }
