@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import connectMongo from "./mongo.js"
 
-import messageRouter from "./routes/messageRouter.js"
+import blogRouter from "./routes/blogRouter.js"
 
 
 const app = express()
@@ -11,7 +11,7 @@ app.use(express.json())
 
 await connectMongo()
 
-app.use("/messages/", messageRouter)
+app.use("/blogs/", blogRouter)
 
 app.use((error, req, res, next) => {
     console.log(error)

@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react"
 
-import MessageCard from "./MessageCard"
+import BlogCard from "./BlogCard"
 
 function Home(){
-    const [messages, setMessages] = useState([])
+    const [blog, setBlog] = useState([])
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function loadMessages() {
             try{
-            const response = await fetch("http://localhost:3000/messages/")
+            const response = await fetch("http://localhost:3000/blogs/")
             const data = await response.json()
             if(!response.ok) throw new Error(data.error)
-            setMessages(data)
+            setBlog(data)
             }catch(error){
                 setError(error.message)
             } finally{
@@ -24,12 +24,14 @@ function Home(){
     }, [])
     
     return(
-        <div className=" m-4 flex gap-4 rounded-lg p-2 border-gray-400 flex-wrap flex-row justify-center items-center">
+        <div className="m-2 flex gap-4 rounded-lg flex-wrap flex-col justify-start items-start">
             {loading && <p className="bg-gray-100 pl-16">Loading messages please wait</p>}
             {error && <p className="bg-red-500 p-2 rounded-lg flex justify-center">{error}</p>}
-            {messages.length > 0 && <div className="flex justify-center bg-blue-100 p-2 rounded-lg">Messages from our users: </div>}
-            {!error && !loading && messages.map((m) => (
-                <MessageCard key={m.id} message={m}/>))}
+            <div className="p-2 mt-20">
+            {blog.length > 0 && <div className="flex justify-center p-2 rounded-md text-4xl">All published blogs</div>}
+            </div>
+            {!error && !loading && blog.map((b) => (
+                <BlogCard key={b.id} blog={b}/>))}
         </div> 
     )
 }

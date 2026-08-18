@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router"
 
 import Home from "./components/Home"
+import About from "./components/About"
 import Header from "./components/Header"
 import DetailMessageCard from "./components/DetailMessageCard"
-import MessageForm from "./components/MessageForm"
+import BlogForm from "./components/BlogForm"
 
 function App() {
 
@@ -11,9 +12,10 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/messages" element={<Home />} />
+        <Route path="/blogs" element={<Home />} />
+        <Route path="/blogs/about" element={<About />} />
         <Route path="/messages/:id" element={<DetailMessageCard />} />
-        <Route path="/messages/new" element={<MessageForm />} />
+        <Route path="/blogs/new" element={<BlogForm />} />
       </Routes>
     </BrowserRouter>
   )

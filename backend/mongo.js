@@ -5,7 +5,7 @@ import dns from "dns"
 //const url = "mongodb+srv://<NodeReact>:<NodeReact>@cluster0.tzmzmy2.mongodb.net/?appName=messageApp"
 
 dns.setServers(["8.8.8.8", "8.8.4.4"])
-mongoose.set("strictQuery", false)
+//mongoose.set("strictQuery", false)
 
 
 async function connectMongo() {
