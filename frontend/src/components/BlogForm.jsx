@@ -42,20 +42,20 @@ function MessageForm() {
     return(
         <div className="flex flex-col items-center">
             <form onSubmit={handleSubmit} className="flex flex-col p-4 gap-2 items-center  m-4 rounded-md">
-                <div className="w-full max-w-md justify-center flex">
-                    <label htmlFor="title" className="m-2 bg-blue-100 p-2  rounded-md">Title:</label>
-                    <input className="bg-blue-100 rounded-lg m-2 p-2" placeholder="Title here..." type="text" id="title" name="title" value={blog.title} onChange={handleChange}></input>
+                <div className="w-full min-w-lg justify-center flex flex-col">
+                    <label htmlFor="title" className="p-2 grow-1 rounded-md text-lg">Title:</label>
+                    <input className="bg-blue-100 rounded-lg p-2 grow-1" placeholder="Title here..." type="text" id="title" name="title" value={blog.title} onChange={handleChange}></input>
                 </div>
-                <div className="flex w-full max-w-md justify-center">
-                    <label htmlFor="snippet" className="m-2 bg-blue-100 p-2 rounded-lg">Snippet:</label>
-                    <input type="text" className="bg-blue-100 rounded-lg m-2 p-2" placeholder="Text snippet here..." id="snippet" name="snippet" value={blog.snippet} onChange={handleChange}></input>
+                <div className="flex flex-col w-full min-w-lg justify-center">
+                    <label htmlFor="snippet" className="m-2  grow-1 rounded-md text-lg">Snippet:</label>
+                    <input type="text" className="bg-blue-100 rounded-lg p-2 grow-1" placeholder="Text snippet here..." id="snippet" name="snippet" value={blog.snippet} onChange={handleChange}></input>
                 </div>
-                  <div className="flex w-full max-w-md justify-center">
-                    <label htmlFor="body" className="m-2 bg-blue-100 p-2 rounded-lg">Body:</label>
-                    <input type="text" className="bg-blue-100 rounded-lg m-2 p-2" placeholder="Body of the post here..." id="body" name="body" value={blog.body} onChange={handleChange}></input>
+                  <div className="flex flex-col w-full min-w-lg justify-center">
+                    <label htmlFor="body" className="p-2 rounded-lg grow-1 text-lg">Body:</label>
+                    <textarea className="bg-blue-100 rounded-lg p-2 grow-1" placeholder="Body of the blog here..." id="body" name="body" value={blog.body} onChange={handleChange}></textarea>
                 </div>
                 <div>
-                    <button type="submit" className="m-2 bg-green-300 p-2 rounded-lg">Submit</button>
+                    <button type="submit" className="bg-gray-400 p-2 m-6 rounded-md">Submit</button>
                 </div>
             </form>
             {error && <p className="bg-red-500 max-w-xs p-2 rounded-lg flex justify-center">{error}</p>}
