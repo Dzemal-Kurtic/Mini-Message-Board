@@ -1,7 +1,7 @@
 import messages from "../data/messages.js"
 import ValidationError from "../errors/ValidationError.js"
 import Blog from "../model/blog.js"
-import { createBlog, getBlogs, getBlog } from "../services/blogServices.js"
+import { getBlogs, getBlog, createBlog, deleteBlog } from "../services/blogServices.js"
 
 export async function getAllBlogs(req, res) {
     try {
@@ -31,5 +31,15 @@ export async function postBlog(req, res) {
             return res.status(400).json({ error: error.message })
         }
         res.status(500).json({ error: "Internal server error" })
+    }
+}
+
+export async function removeBlog(req, res) {
+    const id = req.params.id
+    try {
+        const deletedBlog = await deleteBlog(id)
+        res.status(204).end()
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }

@@ -9,7 +9,6 @@ export async function getBlogs() {
 
 export async function getBlog(id) {
     const blog = await Blog.findById(id)
-    console.log(blog)
     if (!blog) throw new Error("Could not find the blog.")
     return blog
 }
@@ -33,4 +32,10 @@ export async function createBlog(data) {
     })
 
     return await blog.save()
+}
+
+export async function deleteBlog(id) {
+    const deletedBlog = await Blog.findByIdAndDelete(id)
+    if (!deletedBlog) throw new Error("Could not delete the message")
+    return deletedBlog
 }

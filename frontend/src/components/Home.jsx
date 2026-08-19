@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import BlogCard from "./BlogCard"
+import BlogCardItem from "./BlogCardItem"
 
 function Home(){
     const [blog, setBlog] = useState([])
@@ -31,7 +31,7 @@ function Home(){
             {blog.length > 0 && <div className="flex justify-center p-2 rounded-md text-4xl">All published blogs</div>}
             </div>
             {!error && !loading && blog.map((b) => (
-                <BlogCard key={b.id} blog={b}/>))}
+                <BlogCardItem key={b.id} blog={b}/>))}
         </div> 
     )
 }

@@ -14,7 +14,7 @@ await connectMongo()
 app.use("/blogs/", blogRouter)
 
 app.use((error, req, res, next) => {
-    console.log(error)
+    console.log("brah", error)
 })
 
 const PORT = process.env.PORT || 3000
