@@ -38,7 +38,6 @@ export async function editBlog(req, res) {
     const { body } = req
     const id = req.params.id
     try {
-        console.log("controller,", body)
         const blog = await updateBlog(body, id)
         res.json(201).end()
     } catch (error) {
