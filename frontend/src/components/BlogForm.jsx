@@ -73,18 +73,18 @@ function MessageForm() {
             <form onSubmit={handleSubmit} className="flex flex-col p-2 gap-2 items-center  ml-4 rounded-md">
                 <div className="w-full min-w-lg justify-center flex flex-col">
                     <label htmlFor="title" className="p-2 grow-1 rounded-md text-lg">Title:</label>
-                    <input className="border-l-6 bg-blue-100 p-2 grow-1 focus:outline-none focus:ring-0" placeholder="Title here..." type="text" id="title" name="title" value={blog.title} onChange={handleChange}></input>
+                    <input className="border-l-6 bg-blue-100 p-2 grow-1 focus:outline-none focus:ring-0 text-2xl " placeholder="Title here..." type="text" id="title" name="title" value={blog.title} onChange={handleChange}></input>
                 </div>
                 <div className="flex flex-col w-full min-w-lg justify-center">
                     <label htmlFor="snippet" className="m-2  grow-1 rounded-md text-lg">Snippet:</label>
-                    <input type="text" className="border-l-6 bg-blue-100 p-2 grow-1 focus:outline-none" placeholder="Text snippet here..." id="snippet" name="snippet" value={blog.snippet} onChange={handleChange}></input>
+                    <input type="text" className="border-l-6 bg-blue-100 p-2 grow-1 text-2xl focus:outline-none" placeholder="Text snippet here..." id="snippet" name="snippet" value={blog.snippet} onChange={handleChange}></input>
                 </div>
                   <div className="flex flex-col w-full min-w-lg justify-center">
                     <label htmlFor="body" className="p-2 rounded-lg grow-1 text-lg">Body:</label>
-                    <textarea className="border-l-6 bg-blue-100 p-2 grow-1 focus:outline-0" placeholder="Body of the blog here..." id="body" name="body" value={blog.body} onChange={handleChange}></textarea>
+                    <textarea className="border-l-6 bg-blue-100 p-2 grow-1 focus:outline-0 text-2xl" placeholder="Body of the blog here..." id="body" name="body" value={blog.body} onChange={handleChange}></textarea>
                 </div>
                 <div>
-                    <button type="submit" className="bg-gray-300 p-2 m-6 rounded-md hover:shadow-xl">Submit</button>
+                    <button type="submit" className="bg-gray-300 p-2 m-6 rounded-md hover:shadow-xl text-2xl">Submit</button>
                 </div>
             </form>
             {error && <p className="bg-red-500 ml-6 max-w-xs p-2 rounded-lg flex justify-center">{error}</p>}

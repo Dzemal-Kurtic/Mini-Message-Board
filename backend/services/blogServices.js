@@ -46,7 +46,7 @@ export async function updateBlog(data, id) {
     if (!data || !data.body) {
         throw new ValidationError("A blog needs a body.")
     }
-    const blog = await Blog.findById(id)
+    /*const blog = await Blog.findById(id)
     if (!blog) throw new Error("Could not find the blog")
 
     blog.title = data.title
@@ -54,7 +54,19 @@ export async function updateBlog(data, id) {
     blog.body = data.body
     blog.id = id
 
-    return await blog.save()
+    return await blog.save()*/
+    const blog = await Blog.findByIdAndUpdate(id,
+        {
+            title: data.title,
+            snippet: data.snippet,
+            body: data.body,
+        },
+        {
+            new: true,
+        })
+
+    if (!blog) throw new Error("Could not find the blog")
+    return blog
 }
 
 export async function deleteBlog(id) {
