@@ -1,7 +1,7 @@
 import messages from "../data/messages.js"
 import ValidationError from "../errors/ValidationError.js"
 import Blog from "../model/blog.js"
-import { createBlog, getBlogs } from "../services/blogServices.js"
+import { createBlog, getBlogs, getBlog } from "../services/blogServices.js"
 
 export async function getAllBlogs(req, res) {
     try {
@@ -12,13 +12,14 @@ export async function getAllBlogs(req, res) {
     }
 }
 
-export async function getMessageById(req, res) {
+export async function getBlogById(req, res) {
     const id = req.params.id
-    const message = messages.find((m) => m.id === Number(id))
-    if (!message) {
-        return res.status(404).json({ error: "Message not found." })
+    try {
+        const blog = await getBlog(id)
+        res.json(blog)
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
     }
-    res.json(message)
 }
 
 export async function postBlog(req, res) {

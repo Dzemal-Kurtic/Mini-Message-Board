@@ -3,8 +3,15 @@ import ValidationError from "../errors/ValidationError.js"
 
 export async function getBlogs() {
     const blogs = await Blog.find({})
-    if (!blogs) throw new Error("Could not find blog")
+    if (!blogs) throw new Error("Could not find blogs.")
     return blogs
+}
+
+export async function getBlog(id) {
+    const blog = await Blog.findById(id)
+    console.log(blog)
+    if (!blog) throw new Error("Could not find the blog.")
+    return blog
 }
 
 export async function createBlog(data) {

@@ -1,11 +1,11 @@
 import express from "express"
 
-import { getMessageById, getAllBlogs, postBlog } from "../controllers/blogController.js"
+import { getBlogById, getAllBlogs, postBlog } from "../controllers/blogController.js"
 
 const blogRouter = express.Router()
 
 blogRouter.get("/", getAllBlogs)
-blogRouter.get("/:id", getMessageById)
+blogRouter.get("/:id", getBlogById)
 blogRouter.post("/", postBlog)
 
 export default blogRouter
