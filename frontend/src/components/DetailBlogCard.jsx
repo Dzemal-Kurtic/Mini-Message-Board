@@ -39,6 +39,16 @@ function DetailBlogCard(){
         }
     }
 
+  //  async function handleEdit(id) {
+  //      try {
+  //          const response = await fetch(`http://localhost.3000/blogs/create`, {
+  //              method: "PUT"
+   //         })
+    //    } catch (error) {
+     //       
+    //    }
+   // }
+
     return(
         <div className="flex m-4 rounded-lg flex-col items-start justify-start">
             {loading && <p className="bg-gray-100 pl-16 rounded-lg justify-center">Loading blog please wait</p>}

@@ -15,7 +15,8 @@ function App() {
         <Route path="/blogs" element={<Home />} />
         <Route path="/blogs/about" element={<About />} />
         <Route path="/blogs/:id" element={<DetailBlogCard />} />
-        <Route path="/blogs/new" element={<BlogForm />} />
+        <Route path="/blogs/create" element={<BlogForm />} />
+        <Route path="/blogs/edit/:id"  element={<BlogForm />} />
       </Routes>
     </BrowserRouter>
   )

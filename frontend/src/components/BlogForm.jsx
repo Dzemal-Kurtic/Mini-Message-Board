@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router"
 
 function MessageForm() {
     const [blog, setBlog] = useState({
@@ -10,6 +10,23 @@ function MessageForm() {
     const [error, setError] = useState(null)
 
     const navigate = useNavigate()
+    const {id} = useParams()
+    
+    useEffect(() => {
+        if(id){
+            async function loadBlog() {
+            try {
+                const response = await fetch(`http://localhost:3000/blogs/${id}`)
+                const data = await response.json()
+                if(!response.ok) throw new Error(data.error)
+                setBlog(data)
+            } catch(error)  {
+                setError(error.message)
+            }
+        }
+        loadBlog()
+        }
+    }, [id])
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -19,20 +36,29 @@ function MessageForm() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-
+        let response
         try {
-            const response = await fetch(`http://localhost:3000/blogs/`, {
+            if(id){
+            response = await fetch(`http://localhost:3000/blogs/${id}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(blog)
+            })} else{
+            response = await fetch(`http://localhost:3000/blogs/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(blog)
-        })
-
+            })}
+        
         const data = await response.json()
         if(!response.ok){
             throw new Error(data.error)
         }
+        
         navigate("/blogs/")
         } catch (error) {
             setError(error.message)
@@ -41,7 +67,7 @@ function MessageForm() {
 
     return(
         <div className="flex flex-col items-start">
-            <form onSubmit={handleSubmit} className="flex flex-col p-2 gap-2 items-center  m-4 rounded-md">
+            <form onSubmit={handleSubmit} className="flex flex-col p-2 gap-2 items-center  ml-4 rounded-md">
                 <div className="w-full min-w-lg justify-center flex flex-col">
                     <label htmlFor="title" className="p-2 grow-1 rounded-md text-lg">Title:</label>
                     <input className="border-l-6 bg-blue-100 p-2 grow-1" placeholder="Title here..." type="text" id="title" name="title" value={blog.title} onChange={handleChange}></input>
@@ -58,7 +84,7 @@ function MessageForm() {
                     <button type="submit" className="bg-gray-300 p-2 m-6 rounded-md hover:shadow-xl">Submit</button>
                 </div>
             </form>
-            {error && <p className="bg-red-500 max-w-xs p-2 rounded-lg flex justify-center">{error}</p>}
+            {error && <p className="bg-red-500 ml-6 max-w-xs p-2 rounded-lg flex justify-center">{error}</p>}
         </div>
     )
 }
